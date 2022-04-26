@@ -1,0 +1,6 @@
+D:\Projects\Myself\MinimalApiDemo\MinimalApiDemo\UserDb\bin\Debug\UserDb.dacpac
+D:\Projects\Myself\MinimalApiDemo\MinimalApiDemo\UserDb\bin\Debug\UserDb.dll
+D:\Projects\Myself\MinimalApiDemo\MinimalApiDemo\UserDb\bin\Debug\UserDb.pdb
+D:\Projects\Myself\MinimalApiDemo\MinimalApiDemo\UserDb\obj\Debug\UserDb.sqlproj.AssemblyReference.cache
+D:\Projects\Myself\MinimalApiDemo\MinimalApiDemo\UserDb\obj\Debug\UserDb.dll
+D:\Projects\Myself\MinimalApiDemo\MinimalApiDemo\UserDb\obj\Debug\UserDb.pdb

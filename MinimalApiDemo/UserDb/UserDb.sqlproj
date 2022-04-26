@@ -60,4 +60,12 @@
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\StoredProcedures" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\StoredProcedures\spUser_GetAll.sql" />
+    <Build Include="dbo\StoredProcedures\spUser_Get.sql" />
+    <Build Include="dbo\StoredProcedures\spUser_Update.sql" />
+    <Build Include="dbo\StoredProcedures\spUser_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\spUser_Insert.sql" />
+  </ItemGroup>
 </Project>
