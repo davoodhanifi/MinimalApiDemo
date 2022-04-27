@@ -14,7 +14,3 @@ D:\Projects\Myself\MinimalApiDemo\UserDb\bin\Debug\UserDb.pdb
 D:\Projects\Myself\MinimalApiDemo\UserDb\obj\Debug\UserDb.sqlproj.AssemblyReference.cache
 D:\Projects\Myself\MinimalApiDemo\UserDb\obj\Debug\UserDb.dll
 D:\Projects\Myself\MinimalApiDemo\UserDb\obj\Debug\UserDb.pdb
-D:\Projects\Myself\MinimalApiDemo\UserDb\obj\Debug\Model.xml
-D:\Projects\Myself\MinimalApiDemo\UserDb\obj\Debug\refactor.xml
-D:\Projects\Myself\MinimalApiDemo\UserDb\obj\Debug\postdeploy.sql
-D:\Projects\Myself\MinimalApiDemo\UserDb\obj\Debug\predeploy.sql

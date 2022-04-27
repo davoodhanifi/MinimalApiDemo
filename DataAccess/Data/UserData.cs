@@ -1,10 +1,9 @@
-﻿
-using DataAccess.DbAccess;
+﻿using DataAccess.DbAccess;
 using DataAccess.Models;
 
 namespace DataAccess.Data;
 
-public class UserData
+public class UserData : IUserData
 {
     private readonly ISqlDataAccess _dbAccess;
 
