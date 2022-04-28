@@ -24,5 +24,5 @@ public class UserData : IUserData
 
     public async Task Update(UserModel user) => await _dbAccess.SaveData("spUser_Update", user);
 
-    public async Task Delete(int id) => await _dbAccess.SaveData("spUser_Delete", id);
+    public async Task Delete(int id) => await _dbAccess.SaveData("spUser_Delete", new { id });
 }
