@@ -1,9 +1,8 @@
-﻿
-namespace MinimalApi;
+﻿namespace MinimalApi.Endpoints;
 
-public static class Api
+public static class UserEndpoints
 {
-    public static void ConfigureApi(this WebApplication app)
+    public static void MapUserEndpoints(this WebApplication app)
     {
         app.MapGet("/users", GetUsers);
         app.MapGet("/users/{id}", GetUser);
@@ -28,9 +27,10 @@ public static class Api
     {
         try
         {
-            return Results.Ok(await userData.GetUser(id));
+            var user = await userData.GetUser(id);
+            return user != null ? Results.Ok(user) : Results.NotFound();
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             return Results.Problem(exception.Message);
         }
@@ -43,7 +43,7 @@ public static class Api
             await userData.Insert(userModel);
             return Results.Ok();
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             return Results.Problem(exception.Message);
         }
@@ -56,7 +56,7 @@ public static class Api
             await userData.Update(userModel);
             return Results.Ok();
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             return Results.Problem(exception.Message);
         }
@@ -69,7 +69,7 @@ public static class Api
             await userData.Delete(id);
             return Results.Ok();
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             return Results.Problem(exception.Message);
         }
