@@ -36,12 +36,12 @@ public static class UserEndpoints
         }
     }
 
-    public static async Task<IResult> InsertUser(IUserData userData, UserModel userModel)
+    public static async Task<IResult> InsertUser(IUserData userData, UserModel user)
     {
         try
         {
-            await userData.Insert(userModel);
-            return Results.Ok();
+            await userData.Insert(user);
+            return Results.Created($"/users/{user.Id}", user);
         }
         catch (Exception exception)
         {
@@ -49,11 +49,11 @@ public static class UserEndpoints
         }
     }
 
-    public static async Task<IResult> UpdateUser(IUserData userData, UserModel userModel)
+    public static async Task<IResult> UpdateUser(IUserData userData, UserModel user)
     {
         try
         {
-            await userData.Update(userModel);
+            await userData.Update(user);
             return Results.Ok();
         }
         catch (Exception exception)
