@@ -1,5 +1,6 @@
 ﻿using DataAccess.Data;
 using DataAccess.Models;
+using FluentAssertions;
 using MinimalApi.Endpoints;
 using NSubstitute;
 using System;
@@ -23,7 +24,7 @@ public class UserEndpoitsTests
         var result = UserEndpoints.GetUser(_userData, id).Result;
 
         // Assert
-        result.GetOkObjectResultValue<UserModel>().Equals(user);
+        result.GetOkObjectResultValue<UserModel>().Should().BeEquivalentTo(user);
         result.GetObjectResultStatusCode().Equals(200);
     }
 }
