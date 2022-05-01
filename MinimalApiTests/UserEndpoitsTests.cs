@@ -25,6 +25,45 @@ public class UserEndpoitsTests
 
         // Assert
         result.GetOkObjectResultValue<UserModel>().Should().BeEquivalentTo(user);
-        result.GetObjectResultStatusCode().Equals(200);
+        result.GetObjectResultStatusCode().Should().Be(200);
+    }
+
+    [Fact]
+    public void GetUser_RetrunUser_WhenUserNotExists()
+    {
+        // Arrange
+        _userData.GetUser(id: Arg.Any<int>()).Returns((UserModel?)null);
+
+        // Act
+        var result = UserEndpoints.GetUser(_userData, new Random().Next()).Result;
+
+        //Assert
+        result.GetObjectResultStatusCode().Should().Be(404);
+    }
+
+    [Fact]
+    public void InsertUser_ReturnCreatedStatus_WhenUserIsValid()
+    {
+        // Arrange
+        var user = new UserModel { FirstName = "Reza", LastName = "Sadeghi" };
+
+        // Act
+        var result = UserEndpoints.InsertUser(_userData, user).Result;
+
+        //Assert
+        result.GetObjectResultStatusCode().Should().Be(201);
+    }
+
+    [Fact]
+    public void IsertUser_RetrunBadRequest_WhenUserIsNotValid()
+    {
+        // Arrange
+        var user = new UserModel { FirstName = "John" };
+
+        // Act
+        var result = UserEndpoints.InsertUser(_userData, user).Result;
+
+        // Assert
+        result.GetObjectResultStatusCode().Should().Be(400);
     }
 }

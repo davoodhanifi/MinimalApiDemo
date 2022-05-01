@@ -40,6 +40,9 @@ public static class UserEndpoints
     {
         try
         {
+            if (string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName))
+                return Results.BadRequest("FirstName or LastName can not be NULL or Empty!");
+
             await userData.Insert(user);
             return Results.Created($"/users/{user.Id}", user);
         }
