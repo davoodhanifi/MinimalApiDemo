@@ -56,6 +56,12 @@ public static class UserEndpoints
     {
         try
         {
+            if (user.Id <= 0)
+                return Results.BadRequest("Id must be a valid number!");
+
+            if (string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName))
+                return Results.BadRequest("FirstName or LastName can not be NULL or Empty!");
+
             await userData.Update(user);
             return Results.Ok();
         }
@@ -69,6 +75,9 @@ public static class UserEndpoints
     {
         try
         {
+            if (id <= 0)
+                return Results.BadRequest("Id must be a valid number!");
+
             await userData.Delete(id);
             return Results.Ok();
         }
