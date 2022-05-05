@@ -140,4 +140,35 @@ public class UserEndpoitsTests
         result.GetObjectResultStatusCode().Should().Be(400);
         result.GetBadResuestObjectResultValue().Should().BeEquivalentTo("FirstName or LastName can not be NULL or Empty!");
     }
+
+    [Fact]
+    public void DeleteUser_ReturnOkStatus_WhenUserIsValid()
+    {
+        // Arrange
+        var id = new Random().Next();
+        var user = new UserModel { Id = id, FirstName = "Saul", LastName = "Goodman" };
+        _userData.Setup(usr => usr.GetUser(id)).Returns(Task.FromResult(user));
+
+        // Act
+        var result = UserEndpoints.DeleteUser(_userData.Object, id).Result;
+
+        // Assert
+        result.GetObjectResultStatusCode().Should().Be(200);
+    }
+
+    [Fact]
+    public void DeleteUser_ReturnBadRequest_WhenUserIdIsNull()
+    {
+        // Arrange
+        var id = new Random().Next();
+        var user = new UserModel { Id = id, FirstName = "Saul", LastName = "Goodman" };
+        _userData.Setup(usr => usr.GetUser(id)).Returns(Task.FromResult(user));
+
+        // Act
+        var result = UserEndpoints.DeleteUser(_userData.Object, 0).Result;
+
+        // Asset
+        result.GetObjectResultStatusCode().Should().Be(400);
+        result.GetBadResuestObjectResultValue().Should().BeEquivalentTo("Id must be a valid number!");
+    }
 }
