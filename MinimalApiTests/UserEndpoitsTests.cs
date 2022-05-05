@@ -71,6 +71,7 @@ public class UserEndpoitsTests
 
         // Assert
         result.GetObjectResultStatusCode().Should().Be(400);
+        result.GetBadResuestObjectResultValue().Should().BeEquivalentTo("FirstName or LastName can not be NULL or Empty!");
     }
 
     [Fact]
@@ -89,4 +90,54 @@ public class UserEndpoitsTests
         result.GetObjectResultStatusCode().Should().Be(200);
     }
 
+    [Fact]
+    public void UpdateUser_ReturnBadRequest_WhenUserIdIsNull()
+    {
+        // Arrange
+        var id = new Random().Next();
+        var user = new UserModel { Id = id, FirstName = "Saul", LastName = "Goodman" };
+        _userData.Setup(usr => usr.GetUser(id)).Returns(Task.FromResult(user));
+
+        // Act
+        var updatedUser = new UserModel { FirstName = "Ebi", LastName = "Hamedi" };
+        var result = UserEndpoints.UpdateUser(_userData.Object, updatedUser).Result;
+
+        //Assert
+        result.GetObjectResultStatusCode().Should().Be(400);
+        result.GetBadResuestObjectResultValue().Should().BeEquivalentTo("Id must be a valid number!");
+    }
+
+    [Fact]
+    public void UpdateUser_ReturnBadRequest_WhenUserFirstNameIsNull()
+    {
+        // Arrange
+        var id = new Random().Next();
+        var user = new UserModel { Id = id, FirstName = "Saul", LastName = "Goodman" };
+        _userData.Setup(usr => usr.GetUser(id)).Returns(Task.FromResult(user));
+
+        // Act
+        var updatedUser = new UserModel { Id = id, LastName = "Hamedi" };
+        var result = UserEndpoints.UpdateUser(_userData.Object, updatedUser).Result;
+
+        //Assert
+        result.GetObjectResultStatusCode().Should().Be(400);
+        result.GetBadResuestObjectResultValue().Should().BeEquivalentTo("FirstName or LastName can not be NULL or Empty!");
+    }
+
+    [Fact]
+    public void UpdateUser_ReturnBadRequest_WhenUserLastNameIsNull()
+    {
+        // Arrange
+        var id = new Random().Next();
+        var user = new UserModel { Id = id, FirstName = "Saul", LastName = "Goodman" };
+        _userData.Setup(usr => usr.GetUser(id)).Returns(Task.FromResult(user));
+
+        // Act
+        var updatedUser = new UserModel { Id = id, FirstName = "Ebi"};
+        var result = UserEndpoints.UpdateUser(_userData.Object, updatedUser).Result;
+
+        //Assert
+        result.GetObjectResultStatusCode().Should().Be(400);
+        result.GetBadResuestObjectResultValue().Should().BeEquivalentTo("FirstName or LastName can not be NULL or Empty!");
+    }
 }
